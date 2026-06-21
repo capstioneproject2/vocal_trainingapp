@@ -3,8 +3,12 @@
 
 const { spawn } = require("child_process");
 const path = require("path");
-//가상환경 python경로 지정!!!!!!!!!!!
-const PYTHON_PATH = "C:/Users/howon/PycharmProjects/vocal_project/.venv/Scripts/python.exe";
+
+// 💡 도커 프로덕션 환경이면 리눅스 표준인 'python3'를 실행하고, 로컬이면 형의 가상환경을 쓰도록 분기!
+const IS_PRODUCTION = process.env.NODE_ENV === "production";
+const PYTHON_PATH = IS_PRODUCTION 
+  ? "python3" 
+  : "C:/Users/howon/PycharmProjects/vocal_project/.venv/Scripts/python.exe";
 
 
 // runPython 함수 선언
